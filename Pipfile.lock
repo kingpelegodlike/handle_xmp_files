@@ -1,0 +1,41 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "198a5522a1638bb6d9a826f41833ad0cc41aa292afbae05221c37a030374eaaf"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_version": "3.10"
+        },
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.python.org/simple",
+                "verify_ssl": true
+            },
+            {
+                "name": "core-pypi",
+                "url": "https://${ARTIFACTORY_RO_USER}:${ARTIFACTORY_RO_TOKEN}@artifactory.global.ingenico.com/artifactory/api/pypi/core-pypi/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "python-xmp-toolkit": {
+            "hashes": [
+                "sha256:3a88431bb8222e9723da688b3ead50506f3ed3002749362845745dd995a7a68b",
+                "sha256:dad1c2dcf5392459ecf2d0e368a7bbcab099cac7ef9f75fa53612db4efbcda8a"
+            ],
+            "index": "pypi",
+            "version": "==2.0.2"
+        },
+        "pytz": {
+            "hashes": [
+                "sha256:2aa355083c50a0f93fa581709deac0c9ad65cca8a9e9beac660adcbd493c798a",
+                "sha256:31c7c1817eb7fae7ca4b8c7ee50c72f93aa2dd863de768e1ef4245d426aa0725"
+            ],
+            "version": "==2024.2"
+        }
+    },
+    "develop": {}
+}

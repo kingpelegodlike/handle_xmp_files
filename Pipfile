@@ -1,0 +1,17 @@
+[[source]]
+url = 'https://pypi.python.org/simple'
+verify_ssl = true
+name = 'pypi'
+
+[[source]]
+url = "https://${ARTIFACTORY_RO_USER}:${ARTIFACTORY_RO_TOKEN}@artifactory.global.ingenico.com/artifactory/api/pypi/core-pypi/simple"
+verify_ssl = true
+name = "core-pypi"
+
+[packages]
+python-xmp-toolkit = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
