@@ -81,7 +81,7 @@ contacts_set = set(contacts)
 exclude_contacts_set = set(exclude_contacts)
 for file_path in Path(base_path).rglob('*'):
     if os.path.isdir(file_path):
-        logger.info("Parse pictures in '%s' folder", file_path)
+        logger.debug("Parse pictures in '%s' folder", file_path)
     match = pattern_sample.match(str(file_path))
     if match:
         is_favorite_label = False
@@ -127,7 +127,8 @@ for file_path in Path(base_path).rglob('*'):
             file_subjects = []
         try:
             label = xmp.get_property(NS_XAP, "Label")
-            logger.debug(f"file: {file_path} Label: {label} Rating: {rating} DateTimeOriginal: {date_time_original} Subjects: {file_subjects}")
+            logger.debug(   f"Label: '{label}' - Rating: '{rating}' - DateTimeOriginal: '{date_time_original}' " \
+                            f"- Subjects: {file_subjects}")
             if label == "Yellow":
                 is_favorite_label = True
                 if args.rule == "and":
@@ -153,7 +154,7 @@ for file_path in Path(base_path).rglob('*'):
                     all_file_names.append(sld_file_path)
 
         except XMPError as xmp_error:
-            logger.info(f"NO 'Label' property found for file {file_path}!")
+            logger.info("NO 'Label' property found!")
             pass
         xmpfile.close_file()
         if not is_favorite_label:
