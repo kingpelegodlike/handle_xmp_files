@@ -12,3 +12,4 @@ Installer l'environement virtuel:
 Lancer script:
 >python3 -m pipenv run python handle_xmp_files.py -f /mnt/c/Perso/Images -o images
 >python3 -m pipenv run python handle_xmp_files.py -f /mnt/c/Perso/Images -o duval -r "or" -c "Varunah DUVAL,Xavier DUVAL"
+>python3 -m pipenv run python handle_xmp_files.py -f /mnt/c/Perso/Images -o duval -r or --contacts_file contact_list.json

@@ -2,6 +2,7 @@ import os
 import re
 from pathlib import Path
 import argparse
+import json
 import logging
 import logging.config
 from libxmp import XMPFiles, XMPMeta, XMPError
@@ -38,6 +39,7 @@ parser.add_argument("-f", "--folder-path", help="Folder path")
 parser.add_argument("-r", "--rule", choices=['and', 'or'], help="rule to apply")
 parser.add_argument("-c", "--contacts", help="contact list")
 parser.add_argument("-e", "--exclude", help="contact list to exclude")
+parser.add_argument("--contacts_file", help="contacts list in a file")
 parser.add_argument("-o", "--output", help="SlideShow output file")
 parser.add_argument("-v", "--verbose", action="store_true",
                     help="increase output verbosity")
@@ -48,8 +50,8 @@ args = parser.parse_args()
 if args.folder_path:
     base_path = args.folder_path
 if args.rule:
-    if not args.contacts:
-        parser.error("rule requires --contacts")
+    if not args.contacts and not args.contacts_file:
+        parser.error("rule requires --contacts or --contacts_file")
 contacts = []
 if args.contacts:
     if not args.rule:
@@ -60,6 +62,15 @@ if args.exclude:
     if not args.rule:
         parser.error("rule requires --rule")
     exclude_contacts = args.exclude.split(',')
+if not contacts and not exclude_contacts and args.contacts_file:
+    with open(args.contacts_file, 'r', encoding="utf-8") as contacts_file:
+        contacts_status = json.load(contacts_file)
+    for included_contact in contacts_status["include"]:
+        logger.debug("Include contact: '%s'", included_contact)
+        contacts.append(included_contact)
+    for excluded_contact in contacts_status["exclude"]:
+        logger.debug("Exclude contact: '%s'", excluded_contact)
+        exclude_contacts.append(excluded_contact)
 sld_file_name = os.path.join("output", "star.sld")
 sld_all_file_name = os.path.join("output", "all.sld")
 if args.output:
