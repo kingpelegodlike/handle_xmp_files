@@ -93,6 +93,7 @@ exclude_contacts_set = set(exclude_contacts)
 for file_path in Path(base_path).rglob('*'):
     if os.path.isdir(file_path):
         logger.debug("Parse pictures in '%s' folder", file_path)
+        continue
     match = pattern_sample.match(str(file_path))
     if match:
         is_favorite_label = False
