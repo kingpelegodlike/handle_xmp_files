@@ -6,6 +6,8 @@ Installation:
 Install exempi:
 >sudo apt-get install libexempi-dev
 >sudo apt-get install libexempi3
+Install exiv2:
+>sudo apt-get install exiv2
 export environement variables
 >export ARTIFACTORY_RO_TOKEN=*************************
 >export ARTIFACTORY_RO_USER=xduval
